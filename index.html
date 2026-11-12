@@ -12,6 +12,7 @@
 <body>
 <!-- report-tabs:start -->
 <style>
+#codex-visualization[hidden],#report-ideas[hidden]{display:none!important}
 #report-nav,#report-ideas{font:16px/1.6 system-ui,sans-serif;color:light-dark(#263e3a,#e4eee6);color-scheme:light dark;margin:16px;}
 #report-nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center}#report-nav button,#report-nav a{font:inherit;border:1px solid light-dark(#bacbc1,#4b6659);padding:9px 18px;border-radius:24px;color:inherit;background:light-dark(#f8f5ef,#21352e);text-decoration:none;cursor:pointer}#report-nav button[aria-pressed=true]{background:light-dark(#285c51,#9ed5ba);color:light-dark(#fff,#172622)}#report-ideas{max-width:1000px;margin:25px auto;padding:0 20px}#report-ideas h2{font:500 30px Georgia,serif}#report-ideas h3{font-size:21px;margin:8px 0}#report-ideas .idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:25px}#report-ideas article{padding:18px 0;border-bottom:1px solid light-dark(#d3dcd5,#3f574a)}#report-ideas small{font-size:13px}#report-ideas a{color:light-dark(#285c51,#9ed5ba)}
 @media(max-width:600px){#report-nav{margin:8px;gap:6px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}#report-nav button,#report-nav a{font-size:12px;padding:9px 6px;white-space:normal;text-align:center}#report-ideas{margin:12px auto}}
@@ -22,6 +23,7 @@
 (()=>{const map=document.getElementById('codex-visualization'),ideas=document.getElementById('report-ideas');for(const id of ['report-map-tab','report-ideas-tab'])document.getElementById(id).onclick=()=>{const show=id==='report-ideas-tab';map.hidden=show;ideas.hidden=!show;document.getElementById('report-map-tab').setAttribute('aria-pressed',String(!show));document.getElementById('report-ideas-tab').setAttribute('aria-pressed',String(show));};})();
 </script>
 <!-- report-tabs:end -->
+
 
 <iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="NYC Christmas Trip — Itinerary, Dining &amp; Hotels" data-srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
