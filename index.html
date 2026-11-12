@@ -10,6 +10,19 @@
 
 </head>
 <body>
+<!-- report-tabs:start -->
+<style>
+#report-nav,#report-ideas{font:16px/1.6 system-ui,sans-serif;color:light-dark(#263e3a,#e4eee6);color-scheme:light dark;margin:16px;}
+#report-nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center}#report-nav button,#report-nav a{font:inherit;border:1px solid light-dark(#bacbc1,#4b6659);padding:9px 18px;border-radius:24px;color:inherit;background:light-dark(#f8f5ef,#21352e);text-decoration:none;cursor:pointer}#report-nav button[aria-pressed=true]{background:light-dark(#285c51,#9ed5ba);color:light-dark(#fff,#172622)}#report-ideas{max-width:1000px;margin:25px auto;padding:0 20px}#report-ideas h2{font:500 30px Georgia,serif}#report-ideas h3{font-size:21px;margin:8px 0}#report-ideas .idea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:25px}#report-ideas article{padding:18px 0;border-bottom:1px solid light-dark(#d3dcd5,#3f574a)}#report-ideas small{font-size:13px}#report-ideas a{color:light-dark(#285c51,#9ed5ba)}
+@media(max-width:600px){#report-nav{margin:8px;gap:6px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}#report-nav button,#report-nav a{font-size:12px;padding:9px 6px;white-space:normal;text-align:center}#report-ideas{margin:12px auto}}
+</style>
+<nav id="report-nav" aria-label="Trip report sections"><button id="report-map-tab" aria-pressed="true">Map & itinerary</button><a href="https://nyc-trip-with-mahal.silkybean131.chatgpt.site" target="_blank" rel="noopener">Reservations ↗</a><button id="report-ideas-tab" aria-pressed="false">More ideas · 7</button></nav>
+<section id="report-ideas" hidden><h2>More ideas, at your pace</h2><p>Choose one or two swaps—not seven extra stops. Design, neighborhood life and indoor December breaks. Policies checked November 12, 2026; recheck holiday updates.</p><div class="idea-grid"><article><small>Dec 20 only · graphic design</small><h3>Poster House</h3><p>A compact, visual museum at 119 W 23rd Street. My best new pick for your interest in visuals. Regular hours are Thursday–Sunday, so it fits Sunday Dec 20, not Monday or Tuesday. Walk-in admission; current policy offers free admission on the third Sunday, which is Dec 20. Recheck holiday updates.</p><a target="_blank" rel="noopener" href="https://posterhouse.org/hours-admission-location/">Visitor information ↗</a></article><article><small>Dec 20 or 22 · beautiful interiors</small><h3>Morgan Library &amp; Museum</h3><p>An atmospheric indoor alternative at 225 Madison Avenue, close to LUNAR/CHILI. Make it a replacement for another sightseeing block. Regular Monday closure rules out Dec 21.</p><a target="_blank" rel="noopener" href="https://www.themorgan.org/visit">Visitor information ↗</a></article><article><small>Dec 22 · neighborhood stories</small><h3>Tenement Museum</h3><p>Choose one guided tour for a more personal view of Lower East Side history. Pairs naturally with Katz’s; substitute it for part of the Village loop. Reserve a specific tour and time.</p><a target="_blank" rel="noopener" href="https://www.tenement.org/practical-information/">Visitor information ↗</a></article><article><small>Dec 22 · casual food browsing</small><h3>Essex Market</h3><p>A neighborhood market with independent food businesses and indoor browsing. Use it as a snack or coffee pause near the Lower East Side, not another full meal after Golden Diner and Katz’s. Vendor and holiday hours vary.</p><a target="_blank" rel="noopener" href="https://www.essexmarket.nyc/">Visitor information ↗</a></article><article><small>Dec 21 option · architecture &amp; public art</small><h3>High Line</h3><p>Keep the walk short and pair it with Chelsea Market. Popular but worthwhile; choose a dry, comfortable daylight window. Allow 30–45 minutes as a planning estimate.</p><a target="_blank" rel="noopener" href="https://www.thehighline.org/visit/">Visitor information ↗</a></article><article><small>Dec 21 option · waterfront design</small><h3>Little Island</h3><p>A free outdoor alternative to the High Line near Chelsea Market. Choose one of the two on a cold day. Weather can affect park access.</p><a target="_blank" rel="noopener" href="https://littleisland.org/rules-faq/">Visitor information ↗</a></article><article><small>Dec 22 option · books &amp; street browsing</small><h3>SoHo &amp; McNally Jackson</h3><p>Independent-bookstore warm-up at 134 Prince Street and a relaxed look around SoHo. Pair with Golden Diner or Katz’s and shorten the original Village loop.</p><a target="_blank" rel="noopener" href="https://www.mcnallyjackson.com/store/1">Visitor information ↗</a></article></div></section>
+<script type="module">
+(()=>{const map=document.getElementById('codex-visualization'),ideas=document.getElementById('report-ideas');for(const id of ['report-map-tab','report-ideas-tab'])document.getElementById(id).onclick=()=>{const show=id==='report-ideas-tab';map.hidden=show;ideas.hidden=!show;document.getElementById('report-map-tab').setAttribute('aria-pressed',String(!show));document.getElementById('report-ideas-tab').setAttribute('aria-pressed',String(show));};})();
+</script>
+<!-- report-tabs:end -->
+
 <iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="NYC Christmas Trip — Itinerary, Dining &amp; Hotels" data-srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
 &lt;head&gt;
@@ -1677,41 +1690,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
     });
   };
-  const bindingElement = document.getElementById(&quot;codex-visualization-bindings&quot;);
   const mockElement = document.getElementById(&quot;codex-connector-mocks&quot;);
   const connectorGlobals = {};
-  if (bindingElement != null || mockElement != null) {
-    const bindings = parse(bindingElement?.textContent ?? &quot;{}&quot;);
-    bindingElement?.remove();
-    const values = new Map();
-    for (const [name, binding] of Object.entries(bindings)) {
-      if (binding.type === &quot;json&quot;) values.set(name, structuredClone(binding.value));
-    }
-    const pending = [bindings];
-    while (pending.length) {
-      const object = pending.pop();
-      Object.freeze(object);
-      for (const child of Object.values(object)) {
-        if (child !== null &amp;&amp; typeof child === &quot;object&quot;) pending.push(child);
-      }
-    }
-    if (mockElement != null) {
-      const mocks = Object.entries(parse(mockElement.textContent));
-      mockElement.remove();
-      connectorGlobals.visualizationData = {
-        updates: mocks.map(([name, value]) =&gt; ({
-          name,
-          revision: 1,
-          state: &quot;ready&quot;,
-          value: { type: &quot;json&quot;, value },
-        })),
-      };
-      for (const [name, value] of mocks) values.set(name, value);
-    }
+  if (mockElement != null) {
+    const values = new Map(Object.entries(parse(mockElement.textContent)));
+    mockElement.remove();
+    connectorGlobals.visualizationData = {
+      updates: Array.from(values, ([name, value]) =&gt; ({
+        name,
+        revision: 1,
+        state: &quot;ready&quot;,
+        value: { type: &quot;json&quot;, value },
+      })),
+    };
     connectorGlobals.visualization = {
-      get bindings() {
-        return bindings;
-      },
       /** @param {string} name @param {(value: unknown) =&gt; void} callback */
       onData(name, callback) {
         if (typeof callback !== &quot;function&quot;) {
@@ -1723,7 +1715,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           // oxlint-disable-next-line no-console -- Keep authored callback failures local.
           console.error(&quot;Live visualization data callback failed&quot;, error);
         }
-        // A static preview delivers the current value once per subscription.
+        // A static preview delivers the current fixture once per subscription.
         return () =&gt; {};
       },
     };
@@ -1866,14 +1858,16 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/script&gt;
 &lt;div id=&quot;nyc-trip-map&quot;&gt;
   &lt;h2&gt;New York · December 20–22&lt;/h2&gt;
-  &lt;div class=&quot;text-small&quot;&gt;Mahal’s proposed itinerary · restaurants &amp; optional neighborhood stops · 8 hotel options&lt;/div&gt;
+  &lt;div class=&quot;text-small&quot; id=&quot;nyc-subtitle&quot;&gt;Mahal’s proposed itinerary · restaurants &amp; optional neighborhood stops · 8 hotel options&lt;/div&gt;
   &lt;div class=&quot;viz-controls&quot; id=&quot;nyc-views&quot; aria-label=&quot;Map view&quot;&gt;&lt;/div&gt;
   &lt;div id=&quot;nyc-legend&quot; class=&quot;viz-row text-small&quot;&gt;&lt;/div&gt;
+  &lt;label id=&quot;nyc-mobile-view-label&quot; class=&quot;form-label&quot; for=&quot;nyc-mobile-view&quot;&gt;Map view&lt;/label&gt;
+  &lt;select aria-label=&quot;Map view&quot; id=&quot;nyc-mobile-view&quot; class=&quot;form-select&quot;&gt;&lt;/select&gt;
   &lt;svg id=&quot;nyc-map&quot; role=&quot;img&quot; aria-label=&quot;Map of Manhattan with three days of sightseeing, dining options, suggested stops and eight hotels&quot;&gt;&lt;/svg&gt;
-  &lt;label class=&quot;form-label&quot; for=&quot;nyc-place&quot;&gt;Explore a stop, restaurant or hotel&lt;/label&gt;
-  &lt;select id=&quot;nyc-place&quot; class=&quot;form-select&quot;&gt;&lt;/select&gt;
   &lt;div id=&quot;nyc-detail&quot; class=&quot;card&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
-  &lt;div id=&quot;nyc-key&quot; class=&quot;viz-row&quot;&gt;&lt;/div&gt;
+  &lt;label class=&quot;form-label&quot; for=&quot;nyc-place&quot;&gt;Choose a stop&lt;/label&gt;
+  &lt;select id=&quot;nyc-place&quot; class=&quot;form-select&quot;&gt;&lt;/select&gt;
+  &lt;details id=&quot;nyc-stop-list&quot;&gt;&lt;summary&gt;All stops in this view&lt;/summary&gt;&lt;div id=&quot;nyc-key&quot; class=&quot;viz-row&quot;&gt;&lt;/div&gt;&lt;/details&gt;
   &lt;div class=&quot;text-small&quot;&gt;Tentative options; no bookings confirmed. Dashed lines show the original sightseeing order, not walking directions. Dining and new ideas are optional swaps. Pins are approximate locations; adjacent labels may be offset.&lt;/div&gt;
   &lt;div class=&quot;text-small&quot;&gt;Map: &lt;a href=&quot;https://data.cityofnewyork.us/City-Government/2020-Neighborhood-Tabulation-Areas-NTAs-Tabular/9nt8-h7nd&quot; target=&quot;_blank&quot;&gt;NYC Planning neighborhoods&lt;/a&gt; · &lt;a href=&quot;https://www.nyc.gov/content/planning/pages/resources/datasets/lion&quot; target=&quot;_blank&quot;&gt;NYC LION streets&lt;/a&gt; · &lt;a href=&quot;https://geocoding.geo.census.gov/geocoder/&quot; target=&quot;_blank&quot;&gt;Census address geocoding&lt;/a&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -1888,6 +1882,18 @@ html&gt;body{padding:0}&lt;/style&gt;
 #nyc-trip-map .leader{stroke:var(--muted-foreground);stroke-width:.75;fill:none}
 #nyc-trip-map #nyc-detail{display:grid;gap:calc(var(--font-size-base)*.25)}
 #nyc-trip-map .swatch{display:inline-block;width:.8em;height:.8em;border-radius:50%;margin-right:.3em}
+#nyc-trip-map #nyc-mobile-view,#nyc-trip-map #nyc-mobile-view-label{display:none}
+#nyc-trip-map .leader{pointer-events:none}
+@media(max-width:600px){
+#nyc-trip-map{gap:8px}
+#nyc-trip-map #nyc-subtitle,#nyc-trip-map #nyc-views,#nyc-trip-map #nyc-legend{display:none}
+#nyc-trip-map #nyc-mobile-view{display:block}
+#nyc-trip-map #nyc-map{height:320px}
+#nyc-trip-map #nyc-detail{gap:4px}
+#nyc-trip-map #nyc-detail strong{font-size:14px}
+#nyc-trip-map #nyc-detail span{font-size:13px}
+#nyc-trip-map #nyc-detail a{font-size:13px}
+}
 &lt;/style&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -1896,18 +1902,20 @@ const data={&quot;land&quot;:{&quot;type&quot;:&quot;FeatureCollection&quot;,&qu
 const root=document.getElementById(&#x27;nyc-trip-map&#x27;);
 const svg=d3.select(root.querySelector(&#x27;#nyc-map&#x27;));
 const menu=root.querySelector(&#x27;#nyc-place&#x27;), detail=root.querySelector(&#x27;#nyc-detail&#x27;), key=root.querySelector(&#x27;#nyc-key&#x27;);
-let view=&#x27;all&#x27;,selected=&#x27;H1&#x27;;
+let view=window.innerWidth&lt;=600?&#x27;A&#x27;:&#x27;all&#x27;,selected=&#x27;H1&#x27;;
+const mobileView=root.querySelector(&#x27;#nyc-mobile-view&#x27;);
 const colors={A:&#x27;var(--viz-series-1)&#x27;,B:&#x27;var(--viz-series-2)&#x27;,C:&#x27;var(--viz-series-3)&#x27;,R:&#x27;var(--viz-series-4)&#x27;,S:&#x27;var(--viz-series-5)&#x27;,H:&#x27;var(--foreground)&#x27;};
 const views=[[&#x27;all&#x27;,&#x27;Overview&#x27;],[&#x27;A&#x27;,&#x27;Dec 20&#x27;],[&#x27;B&#x27;,&#x27;Dec 21&#x27;],[&#x27;C&#x27;,&#x27;Dec 22&#x27;],[&#x27;H&#x27;,&#x27;Hotels&#x27;],[&#x27;R&#x27;,&#x27;Restaurants&#x27;],[&#x27;S&#x27;,&#x27;New ideas&#x27;]];
+for(const [id,label] of views){const opt=document.createElement(&#x27;option&#x27;);opt.value=id;opt.textContent=label;mobileView.append(opt);}mobileView.onchange=()=&gt;{view=mobileView.value;if(!visible().some(p=&gt;p.id===selected))selected=visible()[0].id;refresh();save();};
 function save(){if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{view,selectedPlace:selected},privateContent:null}).catch(()=&gt;{});}
 function visible(){return data.points.filter(p=&gt;p.kind===&#x27;H&#x27;||view===&#x27;all&#x27;||p.kind===view||p.days?.includes(view));}
 function pick(id){selected=id;menu.value=id;renderDetail();draw();save();}
 for(const [id,label] of views){const b=document.createElement(&#x27;button&#x27;);b.className=&#x27;btn&#x27;;b.textContent=label;b.dataset.view=id;b.onclick=()=&gt;{view=id;if(!visible().some(p=&gt;p.id===selected))selected=visible()[0].id;refresh();save();};root.querySelector(&#x27;#nyc-views&#x27;).append(b);}
 root.querySelector(&#x27;#nyc-legend&#x27;).innerHTML=[[&#x27;A&#x27;,&#x27;A · Day 1&#x27;],[&#x27;B&#x27;,&#x27;B · Day 2&#x27;],[&#x27;C&#x27;,&#x27;C · Day 3&#x27;],[&#x27;H&#x27;,&#x27;H · Hotels&#x27;],[&#x27;R&#x27;,&#x27;R · Dining options&#x27;],[&#x27;S&#x27;,&#x27;S · New ideas&#x27;]].map(([c,t])=&gt;`&lt;span&gt;&lt;span class=&quot;swatch&quot; style=&quot;background:${colors[c]}&quot;&gt;&lt;/span&gt;${t}&lt;/span&gt;`).join(&#x27;&#x27;)+&#x27;&lt;span&gt;★ Top three&lt;/span&gt;&#x27;;
-function renderDetail(){const p=data.points.find(p=&gt;p.id===selected);detail.replaceChildren();const h=document.createElement(&#x27;strong&#x27;);h.textContent=p.id+&#x27; · &#x27;+p.name+(p.rank?&#x27; · Choice #&#x27;+p.rank:&#x27;&#x27;);const t=document.createElement(&#x27;span&#x27;);t.textContent=p.note;const a=document.createElement(&#x27;a&#x27;);a.textContent=&#x27;Open location in Google Maps ↗&#x27;;a.href=&#x27;https://www.google.com/maps/search/?api=1&amp;query=&#x27;+encodeURIComponent(p.address||p.name+&#x27; New York City&#x27;);a.target=&#x27;_blank&#x27;;a.rel=&#x27;noopener&#x27;;detail.append(h,t,a);if(p.source){const source=document.createElement(&#x27;a&#x27;);source.textContent=&#x27;Venue website ↗&#x27;;source.href=p.source;source.target=&#x27;_blank&#x27;;source.rel=&#x27;noopener&#x27;;detail.append(source);}}
-function refresh(){root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.view===view)));menu.replaceChildren();key.replaceChildren();for(const p of visible()){const opt=document.createElement(&#x27;option&#x27;);opt.value=p.id;opt.textContent=p.id+&#x27; · &#x27;+p.name+(p.rank?&#x27; ★ #&#x27;+p.rank:&#x27;&#x27;);menu.append(opt);const b=document.createElement(&#x27;button&#x27;);b.className=&#x27;btn&#x27;;b.textContent=p.id+&#x27; &#x27;+p.short+(p.rank?&#x27; ★&#x27;:&#x27;&#x27;);b.onclick=()=&gt;pick(p.id);key.append(b);}menu.value=selected;renderDetail();draw();}
+function renderDetail(){const p=data.points.find(p=&gt;p.id===selected);detail.replaceChildren();const h=document.createElement(&#x27;strong&#x27;);h.textContent=p.id+&#x27; · &#x27;+p.name+(p.rank?&#x27; · Choice #&#x27;+p.rank:&#x27;&#x27;);const t=document.createElement(&#x27;span&#x27;);t.textContent=p.note;const a=document.createElement(&#x27;a&#x27;);a.textContent=&#x27;Open location in Google Maps ↗&#x27;;a.href=&#x27;https://www.google.com/maps/search/?api=1&amp;query=&#x27;+encodeURIComponent(p.address||p.name+&#x27; New York City&#x27;);a.target=&#x27;_blank&#x27;;a.rel=&#x27;noopener&#x27;;const notes=document.createElement(&#x27;details&#x27;);notes.open=window.innerWidth&gt;600;const summary=document.createElement(&#x27;summary&#x27;);summary.textContent=&#x27;Visit notes&#x27;;notes.append(summary,t);detail.append(h,notes,a);if(p.source){const source=document.createElement(&#x27;a&#x27;);source.textContent=&#x27;Venue website ↗&#x27;;source.href=p.source;source.target=&#x27;_blank&#x27;;source.rel=&#x27;noopener&#x27;;detail.append(source);}}
+function refresh(){mobileView.value=view;root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.view===view)));menu.replaceChildren();key.replaceChildren();for(const p of visible()){const opt=document.createElement(&#x27;option&#x27;);opt.value=p.id;opt.textContent=p.id+&#x27; · &#x27;+p.name+(p.rank?&#x27; ★ #&#x27;+p.rank:&#x27;&#x27;);menu.append(opt);const b=document.createElement(&#x27;button&#x27;);b.className=&#x27;btn&#x27;;b.textContent=p.id+&#x27; &#x27;+p.short+(p.rank?&#x27; ★&#x27;:&#x27;&#x27;);b.onclick=()=&gt;pick(p.id);key.append(b);}menu.value=selected;renderDetail();draw();}
 menu.onchange=()=&gt;pick(menu.value);
-function draw(){const w=root.querySelector(&#x27;#nyc-map&#x27;).clientWidth,h=620;svg.attr(&#x27;viewBox&#x27;,`0 0 ${w} ${h}`);svg.selectAll(&#x27;*&#x27;).remove();const pts=visible();const focus=view===&#x27;all&#x27;?data.points:view===&#x27;H&#x27;?pts:pts.filter(p=&gt;p.kind===view||p.days?.includes(view));const extent=d3.extent(focus,p=&gt;p.xy[0]),lat=d3.extent(focus,p=&gt;p.xy[1]);
+function draw(){const w=root.querySelector(&#x27;#nyc-map&#x27;).clientWidth,h=w&lt;=600?320:620;svg.attr(&#x27;viewBox&#x27;,`0 0 ${w} ${h}`);svg.selectAll(&#x27;*&#x27;).remove();const pts=visible();const focus=view===&#x27;all&#x27;?data.points:view===&#x27;H&#x27;?pts:pts.filter(p=&gt;p.kind===view||p.days?.includes(view));const extent=d3.extent(focus,p=&gt;p.xy[0]),lat=d3.extent(focus,p=&gt;p.xy[1]);
 // Keep all hotels in each day view so the location tradeoff remains visible.
 const fit=pts.map(p=&gt;p.xy);const projection=d3.geoMercator().fitExtent([[42,45],[w-42,h-45]],{type:&#x27;MultiPoint&#x27;,coordinates:fit});const path=d3.geoPath(projection);
 svg.append(&#x27;defs&#x27;).append(&#x27;clipPath&#x27;).attr(&#x27;id&#x27;,&#x27;nyc-clip&#x27;).append(&#x27;rect&#x27;).attr(&#x27;width&#x27;,w).attr(&#x27;height&#x27;,h);
